@@ -16,6 +16,15 @@ import { CaloriesPipe } from './calories.pipe';
     EditMealComponent,
     NewMealComponent
   ],
+  styles: [`
+      .toggle-new-meal{
+        margin-top: 20px;
+        color: darkgrey;
+      }
+      .toggle-new-meal:hover{
+        color: blue;
+      }
+    `],
   template: `
     <select (change)="onFilterChange($event.target.value)">
       <option value="all" selected="selected">Show All Meals</option>
@@ -31,16 +40,22 @@ import { CaloriesPipe } from './calories.pipe';
       *ngIf="selectedMeal"
       [meal]="selectedMeal">
     </edit-meal>
+    <div>
+    <h3 class="toggle-new-meal" (click)="toggleNewMeal(true)">Add a meal</h3>
     <new-meal
+      *ngIf="isNewMealVisible"
       (onSubmitNewMeal)="createMeal($event)"
     > </new-meal>
+
   `
 })
 export class MealListComponent{
   public mealList: Meal[];
   public selectedMeal : Meal;
+  public isSelectedMeal = false;
   public onMealSelect: EventEmitter<Meal>;
   public filterCalories: string = "all";
+  public isNewMealVisible = false;
 
   constructor(){
     this.onMealSelect = new EventEmitter();
@@ -48,14 +63,22 @@ export class MealListComponent{
   mealClicked(clickedMeal: Meal): void{
     this.selectedMeal = clickedMeal;
     this.onMealSelect.emit(clickedMeal);
+    // this.toggleEditMeal(clickedMeal);
   }
   createMeal([name, description, calories]: any[]){
     this.mealList.push(
       new Meal(name, description, parseInt(calories), this.mealList.length)
     );
+    this.toggleNewMeal(false);
   }
   onFilterChange(filterOption) {
     this.filterCalories = filterOption;
   }
-
+  toggleNewMeal(value: boolean): void{
+    this.isNewMealVisible = value;
+  }
+  // toggleEditMeal(clickedMeal){
+  //     console.log(clickedMeal);
+  //     //this.isSelectedMeal = !clickedMeal.class.selected
+  // }
 }

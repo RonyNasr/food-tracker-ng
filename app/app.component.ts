@@ -5,9 +5,19 @@ import { MealListComponent } from './meal-list.component';
 @Component({
   selector: 'my-app',
   directives: [ MealListComponent ],
+  styles: [`
+    .jumbotron{
+      padding-top: 130px;
+      text-align: center;
+      color: white;
+      height: 400px;
+    }
+    `],
   template: `
     <div class="container">
-      <h1>Meals Tracker</h1>
+      <div class= "jumbotron">
+        <h1>Meals Tracker</h1>
+      </div>
       <meal-list
         [mealList] = "meals"
         (onMealSelect)="mealIsSelected($event)"

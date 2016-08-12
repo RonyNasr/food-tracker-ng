@@ -3,10 +3,12 @@ import { Meal } from './meal.model';
 
 @Component({
   selector: 'new-meal',
+  styles:[`
+    `],
   outputs: ['onSubmitNewMeal'],
   template: `
     <div class="meal-form">
-      <h3>Create Meal:</h3>
+      <h4>Create Meal:</h4>
       <div class="row">
         <input placeholder="Name" class="col-sm-4 input-lg" #newName>
         <input placeholder="Calories" class="col-sm-4 input-lg" #newCalories>
