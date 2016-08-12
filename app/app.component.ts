@@ -11,13 +11,24 @@ import { MealListComponent } from './meal-list.component';
       text-align: center;
       color: white;
       height: 400px;
+      background: url("http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg") no-repeat center center;
+    }
+    .jumbotron h1{
+      font-weight: bold;
+      font-family: 'Bitter', serif;
+    }
+    .container{
+      padding: 30px 0 30px 50px;
+      background: white;
+      min-height: 820px;
+      margin-bottom:100px;
     }
     `],
   template: `
+    <div class= "jumbotron">
+      <h1>Meals Tracker</h1>
+    </div>
     <div class="container">
-      <div class= "jumbotron">
-        <h1>Meals Tracker</h1>
-      </div>
       <meal-list
         [mealList] = "meals"
         (onMealSelect)="mealIsSelected($event)"

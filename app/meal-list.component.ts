@@ -18,7 +18,7 @@ import { CaloriesPipe } from './calories.pipe';
   ],
   styles: [`
       .toggle-new-meal{
-        margin-top: 20px;
+        margin : 20px 0;
         color: darkgrey;
       }
       .toggle-new-meal:hover{
@@ -31,6 +31,11 @@ import { CaloriesPipe } from './calories.pipe';
       <option value="healthy">Healthy Meals</option>
       <option value="unhealthy">Unhealthy Meals</option>
     </select>
+    <h3 class="toggle-new-meal" (click)="toggleNewMeal(true)">Add a meal</h3>
+    <new-meal
+    *ngIf="isNewMealVisible"
+    (onSubmitNewMeal)="createMeal($event)"
+    > </new-meal>
     <meal-display *ngFor="#currentMeal of mealList | calories:filterCalories"
       (click)="mealClicked(currentMeal)"
       [class.selected]="currentMeal === selectedMeal"
@@ -41,11 +46,6 @@ import { CaloriesPipe } from './calories.pipe';
       [meal]="selectedMeal">
     </edit-meal>
     <div>
-    <h3 class="toggle-new-meal" (click)="toggleNewMeal(true)">Add a meal</h3>
-    <new-meal
-      *ngIf="isNewMealVisible"
-      (onSubmitNewMeal)="createMeal($event)"
-    > </new-meal>
 
   `
 })

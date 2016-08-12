@@ -1,6 +1,7 @@
 ////////////////////// DEPENDENCIES AND VARIABLES //////////////////////
 
 var gulp = require('gulp');
+var image = require('gulp-image');
 
 // used for concatenating/minifying bower files and other js/css
 var concat = require('gulp-concat');
